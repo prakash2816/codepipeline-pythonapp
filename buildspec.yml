@@ -21,9 +21,10 @@ phases:
 
   build:
     commands:
-      - echo Building Docker image
-      - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
-      - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
+     docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
+     docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
+     - echo Building Docker image
+     
 
   post_build:
     commands:
