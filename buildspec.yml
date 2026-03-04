@@ -1,3 +1,4 @@
+
 version: 0.2
 
 env:
@@ -21,10 +22,9 @@ phases:
 
   build:
     commands:
-     docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
-     docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
-     - echo Building Docker image
-     
+      - echo Building Docker image
+      - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
+      - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
 
   post_build:
     commands:
