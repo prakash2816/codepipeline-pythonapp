@@ -1,11 +1,9 @@
-
 version: 0.2
 
 env:
   parameter-store:
     DOCKER_REGISTRY_USERNAME: "/myapp/docker-credentials/username"
     DOCKER_REGISTRY_PASSWORD: "/myapp/docker-credentials/password"
-    DOCKER_REGISTRY_URL: "/myapp/docker-registry/url"
 
 phases:
   install:
@@ -19,14 +17,13 @@ phases:
     commands:
       - echo Logging in to Docker Hub
       - echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USERNAME --password-stdin
-build:
-  commands:
-    - echo "Listing repo files"
-    - ls -R
-    - echo "Building Docker image"
-    - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
-    - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
+
+  build:
+    commands:
+      - echo Build started
+      - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest day-21
 
   post_build:
     commands:
-      - echo Build completed successfully
+      - echo Pushing Docker image
+      - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
