@@ -16,13 +16,13 @@ phases:
 
   pre_build:
     commands:
-      - echo Logging into Docker Hub
+      - echo Logging in to Docker Hub
       - echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USERNAME --password-stdin
 
   build:
     commands:
       - echo Building Docker image
-      - cd day-14/simple-python-app
+      - cd day-21
       - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest .
       - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
 
