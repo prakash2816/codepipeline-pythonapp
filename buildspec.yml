@@ -20,13 +20,12 @@ phases:
       - echo $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USERNAME --password-stdin
 
   build:
-  commands:
-    - echo "Listing repo files"
-    - ls -R
-    - echo "Building Docker image"
-    - cd day-21
-    - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest .
-post_build:
-  commands:
-    - echo "Pushing Docker image"
-    - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
+    commands:
+      - echo Building Docker image
+      - cd day-21
+      - docker build -t $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest .
+
+  post_build:
+    commands:
+      - echo Pushing Docker image
+      - docker push $DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest
